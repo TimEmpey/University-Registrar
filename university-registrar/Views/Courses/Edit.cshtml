@@ -1,0 +1,23 @@
+@model UniversityRegistrar.Models.Student
+
+<h2>Edit</h2>
+
+<h4>Edit this Student: @Html.DisplayFor(model => model.CourseName)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.StudentId)
+
+  @Html.LabelFor(model => model.CourseName)
+  @Html.EditorFor(model => model.CourseName)
+
+  @Html.LabelFor(model => model.CourseNumber)
+  @Html.EditorFor(model => model.CourseNumber)
+
+  @Html.Label("Select Course")
+  @Html.DropDownList("CourseId")
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
