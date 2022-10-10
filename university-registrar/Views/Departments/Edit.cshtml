@@ -1,0 +1,20 @@
+@model UniversityRegistrar.Models.Department
+
+<h2>Edit</h2>
+
+<h4>Edit this Student: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.DepartmentId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  @Html.Label("Select Department")
+  @Html.DropDownList("DepartmentId")
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

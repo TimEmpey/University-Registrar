@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@model UniversityRegistrar.Models.Department
+
+<h2>Department Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This course does not contain any courses</p>
+}
+else
+{
+  <h4>Department courses:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Course.Name</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to Departments", "Index")</p>
+<p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId })</p>
+<p>@Html.ActionLink("Delete Department", "Delete", new { id = Model.DepartmentId })</p>
