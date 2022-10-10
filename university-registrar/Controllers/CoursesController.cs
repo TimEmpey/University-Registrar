@@ -36,7 +36,7 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Details(int id)
     {
-      var thisCourse = _db.Course
+      var thisCourse = _db.Courses
         .Include(course => course.JoinEntities)
         .ThenInclude(join => join.Student)
         .FirstOrDefault(course => course.CourseId == id);
@@ -45,7 +45,7 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Edit(int id)
     {
-      var thisCourse = _db.Course.FirstOrDefault(course => course.CourseId == id);
+      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
     }
 
@@ -59,15 +59,15 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisCourse = _db.Course.FirstOrDefault(course => course.CourseId == id);
+      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisCourse = _db.Course.FirstOrDefault(course => course.CourseId == id);
-      _db.Course.Remove(thisCourse);
+      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+      _db.Courses.Remove(thisCourse);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

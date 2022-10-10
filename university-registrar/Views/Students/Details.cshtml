@@ -2,10 +2,10 @@
   Layout = "_Layout";
 }
 
-@model ToDoList.Models.Student
+@model UniversityRegistrar.Models.Student
 
 <h2>Student Details</h2>
-<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
 @if(@Model.JoinEntities.Count == 0)
 {
@@ -17,10 +17,10 @@ else
   <ul>
   @foreach(var join in Model.JoinEntities)
   {
-    <li>@join.Category.Name</li>
-    @using (Html.BeginForm("DeleteCategory", "Students"))
+    <li>@join.Course.Name</li>
+    @using (Html.BeginForm("DeleteCourse", "Students"))
     {
-      @Html.Hidden("joinId", @join.CategoryStudentId)
+      @Html.Hidden("joinId", @join.CourseStudentId)
       <input type="submit" value="Delete"/>
     }
   }
@@ -30,4 +30,4 @@ else
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
 <p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
-<p>@Html.ActionLink("Add a Category", "AddCategory", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId })</p>
