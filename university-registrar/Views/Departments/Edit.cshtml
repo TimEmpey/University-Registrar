@@ -1,3 +1,6 @@
+@{
+  Layout = "_Layout";
+}
 @model UniversityRegistrar.Models.Department
 
 <h2>Edit</h2>
@@ -10,9 +13,6 @@
 
   @Html.LabelFor(model => model.Name)
   @Html.EditorFor(model => model.Name)
-
-  @Html.Label("Select Department")
-  @Html.DropDownList("DepartmentId")
 
   <input type="submit" value="Save" />
 }

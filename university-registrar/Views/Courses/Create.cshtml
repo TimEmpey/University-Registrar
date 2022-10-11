@@ -2,16 +2,22 @@
   Layout = "_Layout";
 }
 
+@using UniversityRegistrar.Models
 @model UniversityRegistrar.Models.Course
 
 <h4>Add a new Course</h4>
 @using (Html.BeginForm())
 {
+
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
 
   @Html.LabelFor(model => model.CourseNumber)
   @Html.TextBoxFor(model => model.CourseNumber)
+
+  @Html.Label("Select department")
+  @Html.DropDownList("DepartmentId")
+
   <input type="submit" value="Add new course" />
 }
 <p>@Html.ActionLink("Show all courses", "Index")</p>

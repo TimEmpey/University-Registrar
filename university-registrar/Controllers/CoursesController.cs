@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using UniversityRegistrar.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace UniversityRegistrar.Controllers
 {
@@ -23,6 +24,7 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View();
     }
 
@@ -46,6 +48,7 @@ namespace UniversityRegistrar.Controllers
     public ActionResult Edit(int id)
     {
       var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View(thisCourse);
     }
 
@@ -69,6 +72,23 @@ namespace UniversityRegistrar.Controllers
       var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
       _db.Courses.Remove(thisCourse);
       _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+        public ActionResult AddDepartment(int id)
+    {
+      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
+      return View(thisCourse);
+    }
+
+    [HttpPost]
+    public ActionResult AddDepartment(Course course, int DepartmentId)
+    {
+      if(DepartmentId != 0)
+      {
+        _db.CourseDepartment.Add(new CourseDepartment() { DepartmentId = DepartmentId, CourseId = course.CourseId});
+        _db.SaveChanges();
+      }
       return RedirectToAction("Index");
     }
   }
